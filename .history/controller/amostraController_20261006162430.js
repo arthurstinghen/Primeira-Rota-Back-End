@@ -1,0 +1,86 @@
+import { Amostra } from "../model/Amostra.js"
+import { cadastrar, listar, buscarPorindice, excluir} from "../repository/amostraRepository.js"
+
+export function cadastrarAmostra(req, res) {
+    const {codigo, resultado, origem, } = req.body;
+
+    const amostra = new Amostra(codigo, resultado, origem);
+
+    cadastrar(Amostra);
+
+    res.status(201).json(amostra);
+}
+
+export function listartodos(req, res){
+    const Amostras= listar();
+
+    res.status(200).json(Amostras);
+}
+
+export function atualizarAmostra(req, res){
+    const indice = Number(req.params.indice);
+
+    const Amostra = buscarporIndice(indice);
+
+    if(!Amostra) {
+        return res.status(404).json({
+            mensagem : "Amostra não encontrada"
+        });
+    }
+    
+    const {codigo, resultado, origem,} = req.body;
+
+    if (codigo !== undefined){
+        Amostra.codigo = codigo;
+    }
+
+    if (resultado !== undefined){
+        Amostra.resultado = resultado;
+    }
+     if (origem !== undefined){
+        Amostra.origem = origem;
+    }
+
+     if (resultado !== undefined){
+        Amostra.resultado = resultado;
+    }
+
+     
+    atualizar(indice, Amostra);
+
+    res.status(200).json(Amostra);
+    }
+export function deletaramostra(req, res) {
+        const indice = Number(req.params.indice);
+
+        const amostra = buscarporIndice(indice);
+
+        if(!amostra){
+            return res.status(404).json({
+                mensagem: "amostra não encontrado"
+        });
+        }
+
+        deletar(indice);
+
+        res.status(200).json({
+            mensagem: "amostra excluido com sucesso"
+        });
+        }
+           
+        export function buscaramostraPorIndice(req, res){
+            const indice = Number(req.params.indice);
+
+            const amostra = buscarporIndice(indice);
+
+            if(!amostra){
+                return res.status(404).json({
+                    mensagem: "amostra nao encontrado"
+                });
+            }
+        
+    
+
+        res.status(200).json(amostra)
+    
+    }

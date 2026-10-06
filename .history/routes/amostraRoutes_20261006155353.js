@@ -1,0 +1,22 @@
+import express from "express";
+import { 
+    cadastraramostra,
+    listartodos,
+    atualizaramostra,
+    deletaramostra,
+    buscaramostraPorIndice
+} from "../controller/amostraController.js";
+
+const router = express.Router();
+//Pega a função do framework express e salva na variavel router
+
+router.post("/", cadastrarAmostra);
+router.get("/", listartodos);
+router.patch("/:indice", atualizaramostra);
+router.delete("/:indice", deletaramostra);
+router.get("/:indice", buscaramostraPorIndice)
+
+//Declara que se chamar as rotas POST,GET,PATCH,DELETE vai executar as funçoes do controller
+
+export default router;
+//Torna publica a rota dentro do backend
