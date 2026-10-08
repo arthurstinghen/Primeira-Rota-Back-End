@@ -5,5 +5,4 @@ export class Amostra {
         this.origem = origem;
         this.resultado = resultado;
     }
-
 }
