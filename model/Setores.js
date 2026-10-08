@@ -1,5 +1,8 @@
 export class Setores {
-    constructor(nome){
-
+    constructor(nome, sigla, responsavel, ramal){
+        this.nome = nome;
+        this.sigla = sigla;
+        this.responsavel = responsavel;
+        this.ramal = ramal;
     }
 }
